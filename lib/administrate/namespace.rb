@@ -5,7 +5,7 @@ module Administrate
     end
 
     def resources
-      namespace_controller_paths.uniq.map do |path|
+      @resources ||= routes.map(&:first).uniq.map do |path|
         Resource.new(namespace, path)
       end
     end
@@ -25,6 +25,31 @@ module Administrate
     def all_routes
       Rails.application.routes.routes.map do |route|
         route.defaults.values_at(:controller, :action).map(&:to_s)
+      end
+    end
+
+    class Resource
+      attr_reader :namespace, :resource
+
+      def initialize(namespace, resource)
+        @namespace = namespace
+        @resource = resource
+      end
+
+      def to_s
+        name.to_s
+      end
+
+      def to_sym
+        name
+      end
+
+      def name
+        resource.to_s.gsub(/^#{namespace}\//, "").to_sym
+      end
+
+      def path
+        name.to_s.gsub("/", "_")
       end
     end
   end
