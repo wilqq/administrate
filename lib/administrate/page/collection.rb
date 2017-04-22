@@ -21,12 +21,22 @@ module Administrate
         ordered_by?(attr) && order.direction
       end
 
+      def filter_fields
+        filter_attribute_names.map do |attr_name|
+          attribute_field(dashboard, nil, attr_name, :filter)
+        end
+      end
+
       delegate :ordered_by?, :order_params_for, to: :order
 
       private
 
       def order
         options[:order] || Order.new
+      end
+
+      def filter_attribute_names
+        dashboard.filter_attributes
       end
     end
   end

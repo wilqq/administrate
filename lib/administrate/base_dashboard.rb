@@ -48,6 +48,14 @@ module Administrate
       self.class::COLLECTION_ATTRIBUTES
     end
 
+    def filter_attributes
+      if defined? self.class::FILTER_ATTRIBUTES
+        self.class::FILTER_ATTRIBUTES
+      else
+        self.class::COLLECTION_ATTRIBUTES
+      end
+    end
+
     def display_resource(resource)
       "#{resource.class} ##{resource.id}"
     end

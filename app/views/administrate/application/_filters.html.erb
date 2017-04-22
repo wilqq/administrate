@@ -1,0 +1,16 @@
+<%= search_form_for q, url: admin_users_path(locale: I18n.locale) do |f| %>
+  <%= f.fields_for :selected_filters do |selected_filters_form| %>
+
+    <% page.filter_fields.each do |filter_field| %>
+      <% next unless can_render_field?(filter_field) %>
+
+      <div class="filter-field field-unit field-unit--<%= filter_field.html_class %>">
+        <%= render_field(filter_field, f: f, selected_filters_form: selected_filters_form) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>

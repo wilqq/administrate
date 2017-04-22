@@ -1,0 +1,13 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+  <%=
+    selected_filters_form.select "#{field.name}_filter", options_for_select([
+      ['Equals', "#{field.name}_eq"],
+      ['Less than', "#{field.name}_lt"],
+      ['Greater than', "#{field.name}_gt"],
+    ], f.object.selected_filters["#{field.name}_filter"])
+  %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field f.object.selected_filters.fetch("#{field.name}_filter", "#{field.attribute}_eq") %>
+</div>

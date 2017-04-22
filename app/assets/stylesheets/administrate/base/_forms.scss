@@ -92,3 +92,19 @@ textarea {
 select {
   width: 100%;
 }
+
+.filter-field {
+  select {
+    width: initial;
+    float: right;
+  }
+  input.datetimepicker {
+    display: inline-block;
+    width: 45%;
+  }
+  .divider {
+    display: inline-block;
+    width: 8%;
+    text-align: center;
+  }
+}

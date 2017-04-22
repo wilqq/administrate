@@ -6,6 +6,11 @@ module Administrate
       search_term = params[:search].to_s.strip
       resources = Administrate::Search.new(resource_resolver, search_term).run
       resources = order.apply(resources)
+
+      q = resources.ransack(params[:q])
+      q.selected_filters = params.dig(:q, :selected_filters) || {}
+      resources = q.result
+
       resources = resources.page(params[:page]).per(records_per_page)
       page = Administrate::Page::Collection.new(dashboard, order: order)
 
@@ -13,7 +18,8 @@ module Administrate
         resources: resources,
         search_term: search_term,
         page: page,
-        show_search_bar: show_search_bar?
+        show_search_bar: show_search_bar?,
+        q: q
       }
     end
 

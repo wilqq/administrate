@@ -44,6 +44,8 @@ It renders the `_table` partial to display details about the resources.
   </div>
 </header>
 
+<%= render "filters", q: q, page: page %>
+
 <%= render "collection", collection_presenter: page, resources: resources %>
 
 <%= paginate resources %>

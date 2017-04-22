@@ -1,0 +1,12 @@
+<div class="field-unit__label">
+  <%= f.label "#{field.attribute}" %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field "#{field.attribute}_gteq", class: "datetimepicker" %>
+  <span class="divider">
+    –
+  </span>
+  <%= f.text_field "#{field.attribute}_lteq", class: "datetimepicker" %>
+</div>
+
+

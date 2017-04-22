@@ -1,0 +1,14 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+  <%=
+    selected_filters_form.select "#{field.name}_filter", options_for_select([
+      ['Contains', "#{field.name}_cont"],
+      ['Equals', "#{field.name}_eq"],
+      ['Starts with', "#{field.name}_start"],
+      ['End with', "#{field.name}_end"],
+    ], f.object.selected_filters["#{field.name}_filter"])
+  %>
+</div>
+<div class="field-unit__field">
+  <%= f.text_field f.object.selected_filters.fetch("#{field.name}_filter", "#{field.attribute}_cont") %>
+</div>

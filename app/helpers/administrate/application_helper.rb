@@ -7,6 +7,10 @@ module Administrate
       render locals: locals, partial: field.to_partial_path
     end
 
+    def can_render_field?(field)
+      lookup_context.exists?(field.to_partial_path, [], true)
+    end
+
     def display_resource_name(resource_name)
       resource_name.
         to_s.

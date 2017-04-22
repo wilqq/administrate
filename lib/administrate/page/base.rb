@@ -14,7 +14,7 @@ module Administrate
       protected
 
       def attribute_field(dashboard, resource, attribute_name, page)
-        value = get_attribute_value(resource, attribute_name)
+        value = resource ? get_attribute_value(resource, attribute_name) : nil
         field = dashboard.attribute_type_for(attribute_name)
         field.new(attribute_name, value, page)
       end
