@@ -17,6 +17,8 @@ require "administrate/resource_resolver"
 require "administrate/search"
 require "administrate/namespace"
 
+require "administrate/ransack"
+
 module Administrate
   class Engine < ::Rails::Engine
     isolate_namespace Administrate
